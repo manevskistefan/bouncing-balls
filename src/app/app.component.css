@@ -1,0 +1,15 @@
+#container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#wrapper {
+    padding: 3px;
+    margin: 0 auto;
+}
