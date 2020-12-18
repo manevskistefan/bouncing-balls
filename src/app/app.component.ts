@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
-import { Config } from './app.config';
+import { Constants } from './app.constants';
 
+/**
+ * App Component.
+ */
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = Config.APP_NAME;
+    title: string;
+
+    constructor() {
+        this.title = Constants.APP_NAME; 
+    }
 }

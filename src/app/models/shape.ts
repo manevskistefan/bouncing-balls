@@ -7,6 +7,9 @@ import { Speed } from './speed';
 export interface Shape {
     point: Point;
     speed: Speed;
-    angle: number;
+    readonly angle: number;
     readonly color: string;
+
+    setPoint(point: Point): void;
+    setSpeed(speed: Speed): void;
 }

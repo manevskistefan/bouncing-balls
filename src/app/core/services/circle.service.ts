@@ -1,0 +1,115 @@
+import { Injectable } from '@angular/core';
+import { Constants } from 'src/app/app.constants';
+import { Circle } from 'src/app/models/circle.model';
+import { Point } from 'src/app/models/point';
+import { Speed } from 'src/app/models/speed';
+import { SpeedStatus } from 'src/app/models/speedstatus';
+import { Logger } from '../utils/logger';
+import { RandomGenerator } from '../utils/randomgenerator';
+import { ShapeService } from './shape.service';
+
+/**
+ * Specific implementation of {@link ShapeService} for the {@link Circle} mode.
+ * 
+ * @publicApi
+ */
+@Injectable({
+    providedIn: 'root'
+})
+export class CircleService implements ShapeService<Circle> {
+
+    constructor() { }
+
+    create(point: Point): Circle {
+        if (!this.isPointValid(point)) {
+            throw Error('Circle can not be created without a point!');
+        }
+        
+        let angle = RandomGenerator.getRandomAngle();
+        let randomSpeed = RandomGenerator.getRandomSpeed();
+        let speed = {dx: randomSpeed, dy: randomSpeed};
+        let color = RandomGenerator.getRandomColor();
+        
+        return new Circle(point, speed, angle, color);
+    }
+
+    private isPointValid(point: Point): boolean {
+        return (point != undefined && point.x != undefined && point.y != undefined);
+    }
+
+    calculateNewSpeed(circle: Circle, canvasWidth: number, canvasHeight: number): SpeedStatus {
+        let isHittingTheGround = false;
+        let dx = circle.speed.dx;
+        let dy = circle.speed.dy;
+
+        //add gravity to the y velocity each time calculation of speed is done
+        dy += Constants.GRAVITY;
+
+        if (this.hitWall(circle, canvasWidth)) {
+            dx *= -1;
+        }
+
+        if (this.hitGround(circle, canvasHeight)) {
+            isHittingTheGround = true;
+
+            dy *= -Constants.ShapeUnits.BOUNCE_UNIT;
+            dx = this.addFriction(dx);
+
+            //if the dx and dy are very small, set the speed to 0 in case to stop the movement
+            if (dy < 0 && dy > Constants.ShapeUnits.Y_AXIS_CRITERIA) {
+                dy = 0;
+            }
+        
+            if (Math.abs(dx) <= Constants.ShapeUnits.X_AXIS_CRITERIA) {
+                dx = 0;
+            }
+        }
+
+        return {speed: {dx: dx, dy: dy}, isGroundHit: isHittingTheGround};
+    }
+
+    calculateNewPoint(circle: Circle, speedStatus: SpeedStatus, canvasHeight: number): Point {
+        let speed = speedStatus.speed;
+        let isGroundHit = speedStatus.isGroundHit;
+
+        let x = circle.point.x;
+        let y:number;
+
+        if (isGroundHit) {
+            //relocate the circle to be exactly on the ground, not below
+            y = canvasHeight - circle.radius;
+        } else {
+            y = circle.point.y;
+        }
+
+        //calculate the new x and y based on the trigonometry functions
+        x += (speed.dx * Math.cos(circle.angle));
+        y += (speed.dy * Math.sin(circle.angle));
+        
+        return {x: x, y: y};
+    }
+
+    hitWall(circle: Circle, canvasWidth: number): boolean {
+        return (circle.point.x + circle.radius + circle.speed.dx) > canvasWidth || (circle.point.x + circle.speed.dx) < circle.radius;
+    }
+    
+    hitGround(circle: Circle, canvasHeight: number): boolean {
+        return (circle.point.y + circle.radius + circle.speed.dy) > canvasHeight;
+    }
+
+    /**
+     * Adds friction to the speed on the x axis.
+     * 
+     * @param dx the current speed of the {@link Circle}.
+     */
+    private addFriction(dx: number): number {
+        if(dx > 0) {
+            dx -= Constants.ShapeUnits.X_FRICTION;
+        }
+        if(dx < 0) {
+            dx += Constants.ShapeUnits.X_FRICTION;
+        }
+    
+        return dx;
+      }
+}
