@@ -3,6 +3,7 @@ import { Constants } from 'src/app/app.constants';
 import { CircleService } from 'src/app/core/services/circle.service';
 import { Logger } from 'src/app/core/utils/logger';
 import { Circle } from 'src/app/models/circle.model';
+import { createPoint } from 'src/app/models/point';
 
 /**
  * Canvas componenet representing frame where all kinds of {@link Shape} can be placed and moved within that frame.
@@ -97,7 +98,7 @@ export class CanvasComponent implements OnInit, OnDestroy {
         let x = event.clientX - rect.left;
         let y = event.clientY - rect.top;
         
-        let point = {x: x, y: y};
+        let point = createPoint(x, y);
 
         try {
             let circle = this.circleService.create(point);

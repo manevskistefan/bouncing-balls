@@ -7,3 +7,7 @@ export interface SpeedStatus {
     speed: Speed;
     isGroundHit: boolean;
 }
+
+export const createSpeedStatus = (speed: Speed, isGroundHit: boolean): SpeedStatus => {
+    return {speed: speed, isGroundHit: isGroundHit};
+}

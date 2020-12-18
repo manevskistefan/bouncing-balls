@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Constants } from 'src/app/app.constants';
 import { Circle } from 'src/app/models/circle.model';
-import { Point } from 'src/app/models/point';
-import { Speed } from 'src/app/models/speed';
-import { SpeedStatus } from 'src/app/models/speedstatus';
-import { Logger } from '../utils/logger';
+import { createPoint, Point } from 'src/app/models/point';
+import { createSpeed } from 'src/app/models/speed';
+import { createSpeedStatus, SpeedStatus } from 'src/app/models/speedstatus';
 import { RandomGenerator } from '../utils/randomgenerator';
 import { ShapeService } from './shape.service';
 
@@ -27,7 +26,7 @@ export class CircleService implements ShapeService<Circle> {
         
         let angle = RandomGenerator.getRandomAngle();
         let randomSpeed = RandomGenerator.getRandomSpeed();
-        let speed = {dx: randomSpeed, dy: randomSpeed};
+        let speed = createSpeed(randomSpeed, randomSpeed);
         let color = RandomGenerator.getRandomColor();
         
         return new Circle(point, speed, angle, color);
@@ -65,7 +64,8 @@ export class CircleService implements ShapeService<Circle> {
             }
         }
 
-        return {speed: {dx: dx, dy: dy}, isGroundHit: isHittingTheGround};
+        let speed = createSpeed(dx, dy);
+        return createSpeedStatus(speed, isHittingTheGround);
     }
 
     calculateNewPoint(circle: Circle, speedStatus: SpeedStatus, canvasHeight: number): Point {
@@ -86,7 +86,7 @@ export class CircleService implements ShapeService<Circle> {
         x += (speed.dx * Math.cos(circle.angle));
         y += (speed.dy * Math.sin(circle.angle));
         
-        return {x: x, y: y};
+        return createPoint(x, y);
     }
 
     hitWall(circle: Circle, canvasWidth: number): boolean {
