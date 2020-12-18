@@ -20,10 +20,10 @@ export interface ShapeService<T extends Shape> {
      * Calculates and returns the new {@link SpeedStatus} of the given shape based on the current {@link Speed}.
      * 
      * @param shape the shape which the speed needs to be recalculated
-     * @param width the width of the canvas
-     * @param height the height of the canvas
+     * @param canvasWidth the width of the canvas
+     * @param canvasHeight the height of the canvas
      */
-    calculateNewSpeed(shape: T, width: number, height: number): SpeedStatus;
+    calculateNewSpeed(shape: T, canvasWidth: number, canvasHeight: number): SpeedStatus;
 
     /**
      * Calculates and returns the new {@link Point} of the given shape based on the provided {@link SpeedStatus}.
@@ -37,15 +37,15 @@ export interface ShapeService<T extends Shape> {
      * Checks if the given {@link Shape} hits one of the walls(left or right).
      * 
      * @param shape the shape
-     * @param width the canvas width
+     * @param canvasWidth the canvas width
      */
-    hitWall(shape: T, width: number): boolean;
+    hitWall(shape: T, canvasWidth: number): boolean;
 
     /**
      * Checks if the given {@link Shape} hits the ground.
      * 
      * @param shape the shape
-     * @param height the canvas height
+     * @param canvasHeight the canvas height
      */
-    hitGround(shape: T, height: number): boolean;
+    hitGround(shape: T, canvasHeight: number): boolean;
 }

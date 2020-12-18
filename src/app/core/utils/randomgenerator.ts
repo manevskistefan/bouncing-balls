@@ -1,3 +1,6 @@
+/**
+ * Random generator utility.
+ */
 export class RandomGenerator {
     private static MIN_SPEED:number = -8;
     private static MAX_SPEED:number = 8;

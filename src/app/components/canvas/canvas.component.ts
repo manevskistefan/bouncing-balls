@@ -89,7 +89,7 @@ export class CanvasComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Creates and add @see Circle in the list of all circles that needs to be drawn on the canvas.
+     * Creates and add {@link Circle} in the list of all circles that needs to be drawn on the canvas.
      * 
      * @param event canvas click event
      */

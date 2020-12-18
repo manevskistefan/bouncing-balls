@@ -1,3 +1,6 @@
+/**
+ * Utility class for logging the messages for each log level.
+ */
 export class Logger {
     static info(msg: any)   { console.log(msg); }
     

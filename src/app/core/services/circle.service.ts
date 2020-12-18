@@ -8,7 +8,7 @@ import { RandomGenerator } from '../utils/randomgenerator';
 import { ShapeService } from './shape.service';
 
 /**
- * Specific implementation of {@link ShapeService} for the {@link Circle} mode.
+ * Specific implementation of {@link ShapeService} for the {@link Circle} model.
  * 
  * @publicApi
  */
@@ -41,8 +41,8 @@ export class CircleService implements ShapeService<Circle> {
         let dx = circle.speed.dx;
         let dy = circle.speed.dy;
 
-        //add gravity to the y velocity each time calculation of speed is done
-        dy += Constants.GRAVITY;
+        //add gravity to dy each time speed calculation is done
+        dy += Constants.Units.GRAVITY;
 
         if (this.hitWall(circle, canvasWidth)) {
             dx *= -1;
@@ -51,15 +51,15 @@ export class CircleService implements ShapeService<Circle> {
         if (this.hitGround(circle, canvasHeight)) {
             isHittingTheGround = true;
 
-            dy *= -Constants.ShapeUnits.BOUNCE_UNIT;
+            dy *= -Constants.Units.BOUNCE_UNIT;
             dx = this.addFriction(dx);
 
-            //if the dx and dy are very small, set the speed to 0 in case to stop the movement
-            if (dy < 0 && dy > Constants.ShapeUnits.Y_AXIS_CRITERIA) {
+            //in case dx and dy are very small, set the speed to 0 to stop the movement
+            if (dy < 0 && dy > Constants.Units.Y_AXIS_CRITERIA) {
                 dy = 0;
             }
         
-            if (Math.abs(dx) <= Constants.ShapeUnits.X_AXIS_CRITERIA) {
+            if (Math.abs(dx) <= Constants.Units.X_AXIS_CRITERIA) {
                 dx = 0;
             }
         }
@@ -104,12 +104,12 @@ export class CircleService implements ShapeService<Circle> {
      */
     private addFriction(dx: number): number {
         if(dx > 0) {
-            dx -= Constants.ShapeUnits.X_FRICTION;
+            dx -= Constants.Units.X_FRICTION;
         }
         if(dx < 0) {
-            dx += Constants.ShapeUnits.X_FRICTION;
+            dx += Constants.Units.X_FRICTION;
         }
     
         return dx;
-      }
+    }
 }
