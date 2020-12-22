@@ -16,10 +16,10 @@ import { createPoint } from 'src/app/models/point';
 export class CanvasComponent implements OnInit, OnDestroy {
     @ViewChild('canvas', { static: true }) 
     private canvas: ElementRef<HTMLCanvasElement>;
-    private context: CanvasRenderingContext2D;
     private interval: NodeJS.Timer;
-
-    private circles: Array<Circle>;
+    
+    context: CanvasRenderingContext2D;
+    circles: Array<Circle>;
 
     constructor(private circleService: CircleService) {
         this.circles = new Array();
@@ -35,7 +35,7 @@ export class CanvasComponent implements OnInit, OnDestroy {
 
         //draws the canvas every 15 miliseconds
         this.interval = setInterval(() => {
-        this.drawCanvas();
+            this.drawCanvas();
         }, 15);
     }
 
@@ -55,15 +55,15 @@ export class CanvasComponent implements OnInit, OnDestroy {
 
         //iterate over the circles, recalculate their speed and points and draw them
         this.circles.forEach(circle => {
-            let newSpeedWithStatus = this.circleService.calculateNewSpeed(circle, this.context.canvas.width, this.context.canvas.height);
-            let newSpeed = newSpeedWithStatus.speed;
+            if (circle.speed.dx != 0 || circle.speed.dy != 0) {
+                let newSpeedWithStatus = this.circleService.calculateNewSpeed(circle, this.context.canvas.width, this.context.canvas.height);
+                let newSpeed = newSpeedWithStatus.speed;
 
-            if (newSpeed.dx != 0 || newSpeed.dy != 0) {
                 let newPoint = this.circleService.calculateNewPoint(circle, newSpeedWithStatus, this.context.canvas.height);
                 circle.setPoint(newPoint);
                 circle.setSpeed(newSpeed);
             }
-            
+
             this.drawCircle(circle);
         });
     }
