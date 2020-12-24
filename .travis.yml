@@ -6,11 +6,12 @@ node_js:
   - "10"
 
 addons:
+  chrome: stable
   apt:
     sources:
       - google-chrome
     packages:
-      - chrome-stable
+      - google-chrome-stable
 
 cache:
   directories:
