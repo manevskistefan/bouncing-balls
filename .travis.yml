@@ -16,7 +16,9 @@ install:
   - npm install
 
 before_script:
-  - npm install chromedriver
+  - webdriver-manager update --versions.chrome=87.0
+  - webdriver-manager start --versions.chrome=87.0
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
