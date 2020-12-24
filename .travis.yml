@@ -16,7 +16,7 @@ install:
   - npm install
 
 before_script:
-  - bundle exec chromedriver-update 87.0
+  - npm install chromedriver
 
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
