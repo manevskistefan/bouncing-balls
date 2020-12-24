@@ -6,7 +6,7 @@ node_js:
   - "10"
 
 addons:
-  chrome: beta
+  chrome: stable
 
 cache:
   directories:
@@ -15,10 +15,9 @@ cache:
 install:
   - npm install
 
-# before_script:
-#   - LATEST_CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"`
-#   - curl "https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
-#   - unzip chromedriver_linux64.zip -d ~/bin
+before_script:
+  - npm install chromedriver --chromedriver-force-download
+
 
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
