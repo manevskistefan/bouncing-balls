@@ -7,18 +7,11 @@ node_js:
 
 addons:
   chrome: stable
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
 
 cache:
   directories:
      - ./node_modules
 
-before_install:
-  - sudo apt-get -y --allow-unauthenticated install google-chrome-stable
 install:
   - npm install
 
