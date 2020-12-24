@@ -13,7 +13,7 @@ import { CanvasComponent } from './canvas.component';
  */
 describe('CanvasComponent', () => {
     let component: CanvasComponent;
-    let mockCircleService: any;
+    let mockCircleService: jasmine.SpyObj<CircleService>;
     let fixture: ComponentFixture<CanvasComponent>;
 
     beforeEach(() => {

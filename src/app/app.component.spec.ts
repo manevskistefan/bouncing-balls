@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Constants } from './app.constants';
+import { CanvasComponent } from './components/canvas/canvas.component';
 
 /**
  * Unit tests for {@link AppComponent}.
@@ -11,7 +12,7 @@ describe('AppComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [ AppComponent ]
+            declarations: [ AppComponent, CanvasComponent ]
         }).compileComponents();
 
         fixture = TestBed.createComponent(AppComponent);

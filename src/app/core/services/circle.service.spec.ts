@@ -13,7 +13,7 @@ describe('CircleService', () => {
     let service: CircleService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({ providers: [CircleService] });
         service = TestBed.inject(CircleService);
     });
 
