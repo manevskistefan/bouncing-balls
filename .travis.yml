@@ -17,6 +17,8 @@ cache:
   directories:
      - ./node_modules
 
+before_install:
+  - sudo apt-get -y --allow-unauthenticated install google-chrome-stable
 install:
   - npm install
 
