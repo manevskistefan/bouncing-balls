@@ -18,8 +18,10 @@ cache:
 install: skip
 
 script:
-  - docker build -t bouncing-balls .
+  - docker build -t bouncing-balls:1.0.0 .
 
 deploy:
   provider: script
   script: bash docker_push
+  on:
+    branch: master
