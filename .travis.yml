@@ -17,6 +17,7 @@ cache:
 
 install:
   - docker build -t bouncing-balls .
+  - export CHROME_BIN='/usr/bin/google-chrome'
 
 script:
   - docker run -e CI=true bouncing-balls npm test
