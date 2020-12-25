@@ -19,6 +19,7 @@ install: skip
 
 script:
   - docker build -t bouncing-balls .
+  - docker tag bouncing-balls smanevski/bouncing-balls:1.0.0
 
 deploy:
   skip_cleanup: true
