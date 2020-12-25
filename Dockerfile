@@ -1,4 +1,4 @@
-FROM node:12.18.3
+FROM node:current-alpine3.12
 RUN apk add chromium
 
 WORKDIR /app
