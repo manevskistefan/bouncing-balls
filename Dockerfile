@@ -5,6 +5,6 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
 COPY . .
 
-RUN npm test
+RUN npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
 CMD [ "npm" "start" ]
