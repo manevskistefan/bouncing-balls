@@ -1,4 +1,5 @@
 FROM node:12.18.3
+FROM justinribeiro/chrome-headless
 
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
