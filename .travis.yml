@@ -1,6 +1,8 @@
 dist: trusty
 sudo: false
 
+language: node_js
+
 services:
   - docker
 addons:
