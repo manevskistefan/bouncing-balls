@@ -9,6 +9,6 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
 COPY . .
-RUN npm run test
+RUN npm run test --no-sandbox
 
 CMD [ "npm" "start" ]
