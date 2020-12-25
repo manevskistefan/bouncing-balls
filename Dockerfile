@@ -1,11 +1,15 @@
 FROM node:12.18.3
-FROM justinribeiro/chrome-headless
+RUN apk add chromium
 
 WORKDIR /app
-COPY ["package.json", "package-lock.json*", "./"]
-RUN npm install
-COPY . .
 
-RUN npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+ENV CHROME_BIN=/usr/bin/chromium-browser
+
+COPY ["package.json", "package-lock.json*", "./"]
+
+RUN npm install
+RUN npm run test
+
+COPY . .
 
 CMD [ "npm" "start" ]
