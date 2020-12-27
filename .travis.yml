@@ -6,10 +6,14 @@ services:
 
 install: skip
 
-script:
+before_script:
   - docker build -t bouncing-balls-test -f Dockerfile.test .
+
+script:
   - docker run --rm bouncing-balls-test
   - docker rmi bouncing-balls-test
+
+after_success:
   - docker build -t bouncing-balls .
 
 deploy:
