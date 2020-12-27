@@ -1,28 +1,18 @@
 dist: trusty
 sudo: false
 
-language: node_js
-node_js:
-  - "10"
-
 services:
   - docker
-
-addons:
-  chrome: stable
-
-cache:
-  directories:
-     - ./node_modules
 
 install: skip
 
 script:
+  - docker build -t bouncing-balls-test -f Dockerfile.test .
+  - docker run --rm bouncing-balls-test
+  - docker rmi bouncing-balls-test
   - docker build -t bouncing-balls .
-  - docker tag bouncing-balls smanevski/bouncing-balls:1.0.0
 
 deploy:
-  skip_cleanup: true
   provider: script
   script: bash docker_push.sh
   on:

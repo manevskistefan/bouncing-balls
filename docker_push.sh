@@ -1,3 +1,4 @@
 #!/bin/bash
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker push smanevski/bouncing-balls:1.0.0
+docker tag bouncing-balls smanevski/bouncing-balls:1.1.0
+docker push smanevski/bouncing-balls:1.1.0
