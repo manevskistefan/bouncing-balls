@@ -51,10 +51,10 @@ module.exports = function (config) {
     customLaunchers: {
         ChromeHeadlessCI: {
           base: 'ChromeHeadless',
-          flags: ['--no-sandbox', '--disable-gpu', '--watch=false']
+          flags: ['--no-sandbox', '--disable-gpu', '--no-watch', '--no-progress']
         }
     },
-    singleRun: false,
+    singleRun: true,
     restartOnFileChange: true
   });
 };
