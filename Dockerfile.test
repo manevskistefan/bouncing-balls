@@ -10,4 +10,4 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
 COPY . .
 
-CMD [ "npm" "test -- --no-watch --no-progress --browsers=ChromeHeadlessCI" ]
+CMD [ "npm" "test --browsers=ChromeHeadlessCI" ]
