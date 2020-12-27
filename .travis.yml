@@ -10,7 +10,7 @@ before_script:
   - docker build -t bouncing-balls-test -f Dockerfile.test .
 
 script:
-  - docker run --rm bouncing-balls-test npm test --browsers=ChromeHeadlessCI
+  - docker run --rm bouncing-balls-test
   - docker rmi bouncing-balls-test
 
 after_success:

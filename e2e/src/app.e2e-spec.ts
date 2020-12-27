@@ -2,6 +2,9 @@ import { AppPage } from './app.po';
 import { browser, by, element, logging } from 'protractor';
 import { Constants } from '../../src/app/app.constants';
 
+/**
+ * Integration e2e tests.
+ */
 describe('workspace-project App', () => {
     let page: AppPage;
 
@@ -19,17 +22,6 @@ describe('workspace-project App', () => {
         expect(canvas).toBeTruthy();
         expect(canvas.getSize()).toEqual(jasmine.objectContaining({width: Constants.Canvas.WIDTH, height: Constants.Canvas.HEIGHT}));
     });
-
-    // it('Should add circle when ', async() => {
-    //     browser.waitForAngularEnabled(true);
-    //     await page.navigateTo();
-
-    //     browser.actions().click(element(by.css('canvas'))).perform();
-    //     browser.actions().click(element(by.css('canvas'))).perform();
-    //     browser.actions().click(element(by.css('canvas'))).perform();
-
-
-    // })
 
     afterEach(async () => {
         // Assert that there are no errors emitted from the browser
