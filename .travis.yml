@@ -11,7 +11,7 @@ before_script:
 
 script:
   - docker run --rm bouncing-balls-test npm run test
-  - docker run --rm bouncing-balls-test npm run e2e
+  #- docker run --rm bouncing-balls-test npm run e2e
   - docker rmi bouncing-balls-test
 
 after_success:
