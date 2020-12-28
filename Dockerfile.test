@@ -10,4 +10,4 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
 COPY . .
 
-CMD [ "npm", "test", "e2e" ]
+CMD [ "npm", "run test", "run e2e" ]
