@@ -6,7 +6,7 @@ It was generated with [Angular CLI](https://github.com/angular/angular-cli) vers
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. <br />
-Run `docker pull smanevski/bouncing-balls:{tag}` for downloading the bouncing balls image via [DockerHub] (https://hub.docker.com/r/smanevski/bouncing-balls). Afterwards, run `docker run -d -it --name bouncing-balls smanevski/bouncing-balls:{tag}` for running the container. 
+Run `docker pull smanevski/bouncing-balls:{tag}` for downloading the bouncing balls image via [DockerHub](https://hub.docker.com/r/smanevski/bouncing-balls). Afterwards, run `docker run -d -it --name bouncing-balls smanevski/bouncing-balls:{tag}` for running the container. 
 
 ## Code scaffolding
 
