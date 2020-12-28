@@ -10,8 +10,8 @@ before_script:
   - docker build -t bouncing-balls-test -f Dockerfile.test .
 
 script:
-  - docker run --rm bouncing-balls-unit-tests bouncing-balls-test npm test
-  - docker run --rm bouncing-balls-e2e-tests bouncing-balls-test npm e2e
+  - docker run --rm bouncing-balls-test npm test
+  - docker run --rm bouncing-balls-test npm e2e
   - docker rmi bouncing-balls-test
 
 after_success:
